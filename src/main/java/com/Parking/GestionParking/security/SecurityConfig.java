@@ -43,7 +43,12 @@ public class SecurityConfig {
                                         "/swagger-ui/**",
                                         "/webjars/**",
                                         "/swagger-ui.html",
-                                        "/user/**"
+                                        "/user/**",
+                                        "/api/parking-spots/**",
+                                        "/api/parking-lots/**",
+                                        "/api/reservations/**",
+                                        "/api/tickets/**"
+
 
                                 )
                                 .permitAll()
