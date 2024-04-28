@@ -42,6 +42,10 @@ public class User implements UserDetails, Principal {
     private String password;
     private boolean accountLocked;
     private boolean enabled;
+
+    @JsonIgnore
+    @OneToMany (mappedBy = "user",cascade = CascadeType.ALL,orphanRemoval = true)
+    private  List<Token> tokens;
     @JsonIgnore
  @ManyToMany(fetch=FetchType.EAGER)
    private List<Role> roles;

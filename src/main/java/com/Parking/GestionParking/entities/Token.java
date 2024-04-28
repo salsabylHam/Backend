@@ -23,7 +23,9 @@ public class Token {
     private LocalDateTime expiresAt;
     private LocalDateTime validatedAt;
 
-    @ManyToOne
+
+
+    @ManyToOne // Cascade all operations including deletion
     @JoinColumn(name = "userId", nullable = false)
     private User user;
 
