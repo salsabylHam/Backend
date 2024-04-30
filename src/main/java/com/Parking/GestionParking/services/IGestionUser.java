@@ -10,4 +10,5 @@ public interface IGestionUser {
     User updateUser(User user);
     User retrieveUser (Integer id);
     void removeUser (Integer id);
+
 }

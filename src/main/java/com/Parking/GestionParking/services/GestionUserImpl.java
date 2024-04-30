@@ -19,6 +19,7 @@ public class GestionUserImpl implements IGestionUser{
 
     @Override
     public User updateUser(User user) {
+        //userRepository.delete(user);
         return userRepository.save(user);
     }
 
