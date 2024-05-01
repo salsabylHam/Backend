@@ -1,5 +1,6 @@
 package com.Parking.GestionParking.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -22,9 +23,8 @@ public class ParkingLots implements Serializable {
     private Long idLot;
     private String name;
     private int capacity;
-    // Other fields and methods
 
     @OneToMany(mappedBy = "parkingLot")
-    @JsonIgnoreProperties("parkingSpots")
+    @JsonIgnore
     private List<ParkingSpot> parkingSpots;
 }

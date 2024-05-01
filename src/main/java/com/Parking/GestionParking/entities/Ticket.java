@@ -23,6 +23,5 @@ public class Ticket implements Serializable {
 
     @OneToOne
     @JoinColumn(name = "reservation_id")
-    @JsonIgnoreProperties("ticket")
     private Reservation reservation;
 }

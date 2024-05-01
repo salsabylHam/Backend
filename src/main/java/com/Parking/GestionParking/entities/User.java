@@ -66,6 +66,10 @@ public class User implements UserDetails, Principal {
                 .collect(Collectors.toList());
     }
 
+    @OneToMany(mappedBy = "user")
+    @JsonIgnore
+    private List<Reservation> reservations;
+
 
     @Override
     public String getPassword() {
