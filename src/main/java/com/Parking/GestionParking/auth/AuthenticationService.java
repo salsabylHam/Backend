@@ -39,6 +39,19 @@ public class AuthenticationService {
     @Value("${application.mailing.frontend.activation-url}")
     private String activationUrl;
 
+    public long getTotalUserCount() {
+        return userRepository.getTotalUserCount();
+    }
+
+//    public long getSimpleUserCount() {
+//
+//        return userRepository.getSimpleUserCount();
+//    }
+
+//    public long getSubscribedUserCount() {
+//        return userRepository.getSubscribedUserCount();
+//    }
+
     public void register(RegistrationRequest request) throws MessagingException {
 
         var userRole = roleRepository.findByName("USER")
