@@ -10,4 +10,6 @@ public interface IGestionPoste {
     Poste updatePoste(Poste poste);
     Poste retrievePoste (Integer idPoste);
     void removePoste (Integer idPoste);
+    List<Poste> searchByTitle(String title);
+
 }

@@ -1,7 +1,9 @@
 package com.Parking.GestionParking.services;
 
 import com.Parking.GestionParking.entities.Comments;
+import com.Parking.GestionParking.entities.Poste;
 import com.Parking.GestionParking.repository.ICommentsRepository;
+import com.Parking.GestionParking.repository.IPosteRepository; // Import de IPosteRepository
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +14,9 @@ import java.util.List;
 public class GestionCommentsImpl implements IGestionComments {
     @Autowired
     ICommentsRepository commentRepo;
+
+    @Autowired // Injection de IPosteRepository
+    IPosteRepository posteRepo;
 
     private final List<String> motsSensibles = Arrays.asList("chbinou", "yosser");
 
@@ -45,6 +50,17 @@ public class GestionCommentsImpl implements IGestionComments {
     public void removeComment(Integer idComm) {
         commentRepo.deleteById(idComm);
     }
+
+    @Override
+    public Comments assignCommentToPost(Integer postId, Comments comment) {
+        Poste poste = posteRepo.findById(postId).orElse(null);
+        if (poste == null) {
+            return null;
+        }
+        comment.setPoste(poste);
+        return addComment(comment);
+    }
+
 
     private boolean contientMotsSensibles(String texte) {
         for (String mot : motsSensibles) {

@@ -46,6 +46,11 @@ public class GestionPosteImpl implements IGestionPoste{
         posteRepo.deleteById(idPoste);
     }
 
+    @Override
+    public List<Poste> searchByTitle(String title) {
+        return posteRepo.findByTitleContainingIgnoreCase(title);
+    }
+
     // Méthode pour vérifier si un titre contient des mots sensibles
     private boolean contientMotsSensibles(String titre) {
         for (String mot : motsSensibles) {

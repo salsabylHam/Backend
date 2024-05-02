@@ -11,5 +11,8 @@ public interface IGestionComments {
     Comments retrieveComment (Integer idComm);
     void removeComment (Integer idComm);
 
-  //  List<Comments> retrieveAllCommentsOrderedByDate();
+    public Comments assignCommentToPost(Integer postId, Comments comment);
+
+
+    //  List<Comments> retrieveAllCommentsOrderedByDate();
 }

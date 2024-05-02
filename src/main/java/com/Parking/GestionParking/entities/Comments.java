@@ -25,5 +25,6 @@ public class Comments {
 
     @Enumerated(EnumType.STRING)
     @ManyToOne
+    @JoinColumn(name = "poste_id")
     private  Poste poste ;
 }

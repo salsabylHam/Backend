@@ -39,5 +39,9 @@ public class PosteControllerImpl {
     public void delete(@PathVariable("idPoste") Integer idPoste){
         gPoste.removePoste(idPoste);
     }
+    @GetMapping("/searchByTitle")
+    public List<Poste> searchByTitle(@RequestParam String title) {
+        return gPoste.searchByTitle(title);
+    }
 
 }

@@ -1,7 +1,9 @@
 package com.Parking.GestionParking.controller;
 
 import com.Parking.GestionParking.entities.Comments;
+import com.Parking.GestionParking.entities.Poste;
 import com.Parking.GestionParking.services.IGestionComments;
+import com.Parking.GestionParking.services.IGestionPoste;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +17,8 @@ import java.util.List;
 public class CommnetsControllerImpl {
     @Autowired
     IGestionComments gComments ;
+    @Autowired
+    IGestionPoste gPoste;
 
     @GetMapping("/getall")
     public List<Comments> getAll(){
@@ -39,4 +43,15 @@ public class CommnetsControllerImpl {
     public void delete(@PathVariable("idComm") Integer idComm){
         gComments.removeComment(idComm);
     }
+
+    @PostMapping("/assignCommentToPost/{postId}")
+    public Comments assignCommentToPost(@PathVariable("postId") Integer postId, @RequestBody Comments comment) {
+        Poste poste = gPoste.retrievePoste(postId);
+        if (poste == null) {
+            return null;
+        }
+        comment.setPoste(poste);
+        return gComments.addComment(comment);
+    }
+
 }
