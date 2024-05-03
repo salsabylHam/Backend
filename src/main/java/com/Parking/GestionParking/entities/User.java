@@ -45,6 +45,10 @@ public class User implements UserDetails, Principal {
     @JsonIgnore
  @ManyToMany(fetch=FetchType.EAGER)
    private List<Role> roles;
+    @JsonIgnore
+    @OneToMany(mappedBy = "user")
+    private List<Subscription> subscription;
+
 //    @OneToMany(mappedBy = "owner")
 //    private List<Book> books;
 //    @OneToMany(mappedBy = "user")
