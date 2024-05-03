@@ -30,10 +30,12 @@ public class PosteControllerImpl {
     public Poste getPosteById(@PathVariable("idPoste") Integer idPoste){
         return gPoste.retrievePoste(idPoste);
     }
-    @PutMapping("/updatePoste")
-    public Poste updatePoste(@RequestBody Poste poste){
+    @PutMapping("/updatePoste/{idPoste}")
+    public Poste updatePoste(@PathVariable Integer idPoste, @RequestBody Poste poste){
+        poste.setIdPoste(idPoste);
         return gPoste.updatePoste(poste);
     }
+
 
     @DeleteMapping("deleteId/{idPoste}")
     public void delete(@PathVariable("idPoste") Integer idPoste){
