@@ -1,5 +1,5 @@
 package com.Parking.GestionParking.entities;
 
 public enum SubscriptionType {
-    ANNUEL , MENSUEL , SEMETRIEL;
+    ANNUEL , MENSUEL , SEMESTRIEL;
 }

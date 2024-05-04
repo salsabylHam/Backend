@@ -26,7 +26,7 @@ public class Subscription implements Serializable {
     @Enumerated(EnumType.STRING)
     SubscriptionType SubType;
     @JsonIgnore
-    @OneToMany(mappedBy = "subscription")
+    @OneToMany(mappedBy = "subscription", cascade= CascadeType.ALL)
     private List<SubscriptionHistory> subscriptionHistories;
     @ManyToOne
     private User user;
