@@ -26,7 +26,7 @@ public class ResetPasswordController {
     private EmailService emailService;
 
     @PostMapping
-    public ResponseEntity<?> resetPassword(@RequestParam String email, @RequestParam String newPassword) {
+    public ResponseEntity<?> resetPassword(@RequestParam String email, @RequestParam String newPassword,@RequestParam String confirmPassword) {
         User user = userRepository.findByEmail(email);
         if (user == null) {
             return ResponseEntity.notFound().build();

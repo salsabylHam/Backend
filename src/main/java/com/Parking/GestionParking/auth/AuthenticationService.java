@@ -62,7 +62,7 @@ public void register(RegistrationRequest request) throws MessagingException {
             .password(passwordEncoder.encode(request.getPassword()))
             //.accountLocked(false)
             //.enabled(true)
-            .role("SubcribedClient") // Set the role to "user" for every new user
+            .role("User") // Set the role to "user" for every new user
             .build();
     userRepository.save(user);
     //sendValidationEmail(user);
