@@ -1,6 +1,7 @@
 package com.Parking.GestionParking.controller;
 
 import com.Parking.GestionParking.Utils.DateUtils;
+import com.Parking.GestionParking.entities.Role;
 import com.Parking.GestionParking.entities.User;
 import com.Parking.GestionParking.repository.UserRepository;
 import com.Parking.GestionParking.services.ReservationService;
@@ -13,7 +14,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
@@ -37,35 +37,50 @@ public class UserDashboardController {
     }
 
     @GetMapping("/user-count")
-    public ResponseEntity<Map<String, Long>> getUserCount() {
+    public ResponseEntity<Long> getUserCount() {
         long totalUsers = userRepository.getTotalUserCount();
        // long subscribedUsers = userRepository.getSubscribedUserCount();
       //  long simpleUsers = userRepository.getSimpleUserCount();
 
-        Map<String, Long> counts = new HashMap<>();
-        counts.put("totalUsers", totalUsers);
+      //  Map<String, Long> counts = new HashMap<>();
+      //  counts.put("totalUsers", totalUsers);
        // counts.put("subscribedUsers", subscribedUsers);
       //  counts.put("simpleUsers", simpleUsers);
 
-        return ResponseEntity.ok(counts);
+        return ResponseEntity.ok(totalUsers);
+
+
+
     }
 
-//    @GetMapping("/user-percentages")
-//    public ResponseEntity<Map<String, Double>> getUserPercentages() {
-//        long totalUsers = userRepository.getTotalUserCount();
-//        long subscribedUsers = userRepository.getSubscribedUserCount();
-//        long simpleUsers = userRepository.getSimpleUserCount();
-//
-//        double subscribedPercentage = (double) subscribedUsers / totalUsers * 100;
-//        double simplePercentage = (double) simpleUsers / totalUsers * 100;
-//
-//        Map<String, Double> percentages = new HashMap<>();
-//        percentages.put("sub" +
-//                "scribedPercentage", subscribedPercentage);
-//        percentages.put("simplePercentage", simplePercentage);
-//
-//        return ResponseEntity.ok(percentages);
-//    }
+    @GetMapping("/subscribed-user-count")
+    public ResponseEntity<Long> getSubscribedUserCount() {
+        long subscribedUsers = userRepository.getSubscribedUserCount();
+        return ResponseEntity.ok(subscribedUsers);
+    }
+
+    @GetMapping("/simple-user-count")
+    public ResponseEntity<Long> getSimpleUserCount() {
+        long simpleUsers = userRepository.getSimpleUserCount();
+        return ResponseEntity.ok(simpleUsers);
+    }
+
+    @GetMapping("/user-percentages")
+    public ResponseEntity<Map<String, Double>> getUserPercentages() {
+        long totalUsers = userRepository.getTotalUserCount();
+        long subscribedUsers = userRepository.getSubscribedUserCount();
+        long simpleUsers = userRepository.getSimpleUserCount();
+
+        double subscribedPercentage = (double) subscribedUsers / totalUsers * 100;
+        double simplePercentage = (double) simpleUsers / totalUsers * 100;
+
+        Map<String, Double> percentages = new HashMap<>();
+        percentages.put("sub" +
+                "scribedPercentage", subscribedPercentage);
+        percentages.put("simplePercentage", simplePercentage);
+
+        return ResponseEntity.ok(percentages);
+    }
 
     @GetMapping("/most-active-user")
     public ResponseEntity<User> getMostActiveUser() {
@@ -96,6 +111,18 @@ public class UserDashboardController {
         Long count = reservationService.getReservationCountSinceLastWeek();
         return ResponseEntity.ok(count);
     }
+
+    /*@GetMapping("/subscribed-user-count")
+    public ResponseEntity<Long> getSubscribedUserCount() {
+        long subscribedUsers = userRepository.getUserCountByRole(String.valueOf(Role.SubscribedClient));
+        return ResponseEntity.ok(subscribedUsers);
+    }
+
+    @GetMapping("/simple-user-count")
+    public ResponseEntity<Long> getSimpleUserCount() {
+        long simpleUsers = userRepository.getUserCountByRole(String.valueOf(Role.SimpleClient));
+        return ResponseEntity.ok(simpleUsers);
+    }*/
 
 
 }

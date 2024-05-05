@@ -12,7 +12,7 @@ import java.util.List;
 //@PreAuthorize("hasRole('SimpleCLient')")
 @RequestMapping("/user")
 @CrossOrigin(origins = "http://localhost:4200")
-@PreAuthorize("hasRole('SimpleCLient')")
+//@PreAuthorize("hasRole('SimpleCLient')")
 
 public class UserController {
     @Autowired

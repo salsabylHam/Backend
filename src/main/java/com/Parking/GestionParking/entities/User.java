@@ -15,11 +15,10 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.security.Principal;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Getter
 @Setter
@@ -36,36 +35,23 @@ public class User implements UserDetails, Principal {
     private Integer id;
     private String firstname;
     private String lastname;
-    private LocalDate dateOfBirth;
     @Column(unique = true)
     private String email;
     private String password;
-    private boolean accountLocked;
-    private boolean enabled;
-    @JsonIgnore
- @ManyToMany(fetch=FetchType.EAGER)
-   private List<Role> roles;
-//    @OneToMany(mappedBy = "owner")
-//    private List<Book> books;
-//    @OneToMany(mappedBy = "user")
-//    private List<BookTransactionHistory> histories;
-
-    @CreatedDate
-    @Column(nullable = false, updatable = false)
+    private String role;
+    //private String role = "";
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "created_date", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private LocalDateTime createdDate;
 
-    @LastModifiedDate
-    @Column(insertable = false)
-    private LocalDateTime lastModifiedDate;
+    @JsonIgnore
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Token> tokens;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return this.roles
-                .stream()
-                .map(r -> new SimpleGrantedAuthority(r.getName()))
-                .collect(Collectors.toList());
+        return Collections.singleton(new SimpleGrantedAuthority(role));
     }
-
 
     @Override
     public String getPassword() {
@@ -84,7 +70,7 @@ public class User implements UserDetails, Principal {
 
     @Override
     public boolean isAccountNonLocked() {
-        return !accountLocked;
+        return true;
     }
 
     @Override
@@ -94,7 +80,7 @@ public class User implements UserDetails, Principal {
 
     @Override
     public boolean isEnabled() {
-        return enabled;
+        return true; // Assuming all users are enabled
     }
 
     public String fullName() {

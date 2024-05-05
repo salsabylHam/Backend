@@ -24,20 +24,12 @@ public class SubscriptionDashboardController {
     }
 
     @GetMapping("/subscription-count")
-    public ResponseEntity<Map<String, Long>> getSubscriptionCount() {
+    public ResponseEntity<Long> getSubscriptionCount() {
         long totalSubscriptions = subscriptionRepository.countAllSubscriptions();
-        long annuelCount = subscriptionRepository.countAnnuelSubscriptions();
-        long mensuelCount = subscriptionRepository.countMensuelSubscriptions();
-        long semestrielCount = subscriptionRepository.countSemestrielSubscriptions();
 
-        Map<String, Long> counts = new HashMap<>();
-        counts.put("totalSubscriptions", totalSubscriptions);
-        counts.put("annuelSubscriptions", annuelCount);
-        counts.put("mensuelSubscriptions", mensuelCount);
-        counts.put("semestrielSubscriptions", semestrielCount);
-
-        return ResponseEntity.ok(counts);
+        return ResponseEntity.ok(totalSubscriptions);
     }
+
 
     @GetMapping("/mensuel-subscriptions-count")
     public ResponseEntity<Long> getMensuelSubscriptionsCount() {

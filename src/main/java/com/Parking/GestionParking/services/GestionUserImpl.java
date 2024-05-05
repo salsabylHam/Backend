@@ -14,11 +14,12 @@ public class GestionUserImpl implements IGestionUser{
     UserRepository userRepository;
     @Override
     public List<User> retrieveAlluser() {
-         return (List<User>)  userRepository.findAll();
+        return (List<User>)  userRepository.findAll();
     }
 
     @Override
     public User updateUser(User user) {
+        //userRepository.delete(user);
         return userRepository.save(user);
     }
 

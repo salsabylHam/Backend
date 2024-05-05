@@ -44,13 +44,16 @@ public class SecurityConfig {
                                         "/webjars/**",
                                         "/swagger-ui.html",
                                         "/user/**",
+                                        "/forgot-password/**",
+                                        "/reset-password/**",
                                         "/userdashboard/**",
                                         "/subscriptiondashboard/**",
                                         "/postdashboard/**",
                                         "/reservationdashboard/**",
                                         "/userdashboard/user-count-since-last-month",
                                         "/reservationdashboard/reservation-count-since-last-week",
-                                        "/spotDashboard/**"
+                                        "/spotDashboard/**",
+                                        "/userdashboard/user-percentages"
 
                                 )
                                 .permitAll()
