@@ -10,6 +10,7 @@ public interface IGestionFeedback {
     List<Feedback> retrieveAllFeedback();
     Feedback updateFeedback(Feedback feedback);
     Feedback retrieveFeedback (Integer idFeedback);
+    void deleteFeedback(Integer idFeedback);
 
 
 }

@@ -33,6 +33,9 @@ public class GestionFeebackImpl implements IGestionFeedback {
     public Feedback retrieveFeedback(Integer idFeedback) {
         return iFeedbackRepository.findById(idFeedback).orElse(null);
     }
+    public void deleteFeedback(Integer idFeedback) {
+        iFeedbackRepository.deleteById(idFeedback);
+    }
 
 
 }

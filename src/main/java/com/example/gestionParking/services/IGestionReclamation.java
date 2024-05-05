@@ -10,4 +10,5 @@ public interface IGestionReclamation {
     List<Reclamation> retrieveAllReclamation();
     Reclamation updateReclamation(Reclamation reclamation);
     Reclamation retrieveReclamation (Integer idReclamation);
+    void deleteReclamation (Integer idreclamation);
 }

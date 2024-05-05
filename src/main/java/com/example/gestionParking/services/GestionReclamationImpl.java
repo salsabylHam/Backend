@@ -32,4 +32,11 @@ public class GestionReclamationImpl implements IGestionReclamation{
     public Reclamation retrieveReclamation(Integer idReclamation) {
         return iReclamationRepository.findById(idReclamation).orElse(null);
     }
+
+    @Override
+    public void deleteReclamation(Integer idreclamation) {
+        iReclamationRepository.deleteById(idreclamation);
+    }
+
+
 }
