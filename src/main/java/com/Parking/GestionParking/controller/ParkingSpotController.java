@@ -2,10 +2,14 @@ package com.Parking.GestionParking.controller;
 
 
 import com.Parking.GestionParking.entities.ParkingSpot;
+import com.Parking.GestionParking.entities.SpotType;
 import com.Parking.GestionParking.services.ParkingSpotService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -39,5 +43,13 @@ public class ParkingSpotController {
     @DeleteMapping("/{id}")
     public void deleteParkingSpot(@PathVariable Long id) {
         parkingSpotService.deleteParkingSpotById(id);
+    }
+
+    @GetMapping("/available")
+    public List<ParkingSpot> getAvailableParkingSpots(
+            @RequestParam("startDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) Date startDate,
+            @RequestParam("endDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) Date endDate,
+            @RequestParam("spotType") String spotType) {
+        return parkingSpotService.getAvailableSpotsByTypeAndTime(startDate, endDate, SpotType.valueOf(spotType));
     }
 }
