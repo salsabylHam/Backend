@@ -39,7 +39,7 @@ public class CommnetsControllerImpl {
         comments.setIdComm(idComm);
         return gComments.updateComment(comments);
     }
-    
+
     @DeleteMapping("deleteId/{idComm}")
     public void delete(@PathVariable("idComm") Integer idComm){
         gComments.removeComment(idComm);

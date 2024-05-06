@@ -26,7 +26,7 @@ public class Poste  implements Serializable {
     private LocalDate date ;
     private  String userName;
     @Enumerated(EnumType.STRING)
-    @OneToMany(mappedBy = "poste")
+    @OneToMany(mappedBy = "poste" , cascade = CascadeType.ALL)
     @JsonIgnore
     private List<Comments> comments;
     @Enumerated(EnumType.STRING)
