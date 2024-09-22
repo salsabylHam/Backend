@@ -34,6 +34,7 @@ public class User implements UserDetails, Principal {
     @Id
     @GeneratedValue
     private Integer id;
+    private intefer em;
     private String firstname;
     private String lastname;
     private LocalDate dateOfBirth;
